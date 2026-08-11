@@ -243,3 +243,9 @@ Then close with the canonical one-liner, led by the event, e.g.: *"That's it —
 - **Idempotent.** Before creating a pod or rule, list first and reuse anything already named for this loop, so re-running the skill doesn't duplicate.
 - **Float sizing.** Because Rule A refills on each payment event, size the float above the worst-case wallet spend between two client payments. Rule B (weekly) is the backstop. Surface this; don't silently add extra scheduled rules.
 - **Permissions.** Add Business, connecting a bank, and issuing a card all need Writer/Admin on the Sequence account. If a deep-linked step is missing in the app, that's usually the cause — tell the user.
+
+## Examples
+
+- [First-time setup](./examples/first-time-setup.md)
+- [Resume an existing setup](./examples/resume-existing-setup.md)
+- [Simulation-only test](./examples/simulation-only.md)
