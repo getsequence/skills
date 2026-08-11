@@ -3,15 +3,21 @@
 Portable skills for using [Sequence](https://getsequence.io) with coding
 agents, integrations, and real-world money workflows.
 
-The first skill sets up a self-funding [GoHighLevel](https://www.gohighlevel.com/)
-wallet through Sequence. More product and integration skills will live here as
-they become ready.
+The repository currently includes one skill for a self-funding
+[GoHighLevel](https://www.gohighlevel.com/) wallet. New Sequence product and
+integration skills will use the same installation and documentation model.
 
 ## Install in one command
 
 The easiest path works across Claude Code, Codex, Cursor, GitHub Copilot,
 Cline, OpenCode, Gemini CLI, Windsurf, and the other agents supported by the
 open Agent Skills ecosystem:
+
+```bash
+npx skills add getsequence/skills
+```
+
+Install only one skill when you know what you need:
 
 ```bash
 npx skills add getsequence/skills --skill ghl-setup
@@ -21,7 +27,6 @@ Install globally for the agent you use every day:
 
 ```bash
 npx skills add getsequence/skills \
-  --skill ghl-setup \
   --global \
   --agent claude-code \
   --yes
@@ -33,35 +38,45 @@ and list the agents available on your machine.
 
 ## Choose your coding agent
 
-Run the same command with the agent name that matches your tool:
+Install the full Sequence skill collection into a specific agent:
 
 ```bash
 # Claude Code
-npx skills add getsequence/skills --skill ghl-setup -g -a claude-code -y
+npx skills add getsequence/skills -g -a claude-code -y
 
 # Codex
-npx skills add getsequence/skills --skill ghl-setup -g -a codex -y
+npx skills add getsequence/skills -g -a codex -y
 
 # Cursor
-npx skills add getsequence/skills --skill ghl-setup -g -a cursor -y
+npx skills add getsequence/skills -g -a cursor -y
 
 # GitHub Copilot
-npx skills add getsequence/skills --skill ghl-setup -g -a github-copilot -y
+npx skills add getsequence/skills -g -a github-copilot -y
 
 # Cline
-npx skills add getsequence/skills --skill ghl-setup -g -a cline -y
+npx skills add getsequence/skills -g -a cline -y
 
 # OpenCode
-npx skills add getsequence/skills --skill ghl-setup -g -a opencode -y
+npx skills add getsequence/skills -g -a opencode -y
 
 # Gemini CLI
-npx skills add getsequence/skills --skill ghl-setup -g -a gemini-cli -y
+npx skills add getsequence/skills -g -a gemini-cli -y
 
 # Windsurf
-npx skills add getsequence/skills --skill ghl-setup -g -a windsurf -y
+npx skills add getsequence/skills -g -a windsurf -y
 
 # Kiro CLI
-npx skills add getsequence/skills --skill ghl-setup -g -a kiro-cli -y
+npx skills add getsequence/skills -g -a kiro-cli -y
+```
+
+Install only one skill into a specific agent by adding `--skill <skill-name>`:
+
+```bash
+npx skills add getsequence/skills \
+  --skill ghl-setup \
+  --global \
+  --agent claude-code \
+  --yes
 ```
 
 To see every agent supported by the installer:
@@ -74,7 +89,6 @@ To install into more than one agent in one command:
 
 ```bash
 npx skills add getsequence/skills \
-  --skill ghl-setup \
   --global \
   --agent claude-code \
   --agent codex \
@@ -88,7 +102,8 @@ Use `--copy` instead of symlinks when your environment does not support them.
 
 ### Claude Code
 
-After installation, open Claude Code and run:
+After installing a skill, open Claude Code and invoke it by name. For the
+current skill:
 
 ```text
 /ghl-setup
@@ -106,24 +121,22 @@ complete the sign-in flow.
 
 ### Codex, Cursor, Copilot, and other agents
 
-Ask the agent to set up your GHL wallet with Sequence, or refer to the skill by
-name:
+Ask the agent to use the workflow you need, or refer to a skill by name:
 
 ```text
 Use the ghl-setup skill to set up my GoHighLevel wallet through Sequence.
 ```
 
-The skill's frontmatter tells compatible agents when to activate it. If an
-agent does not auto-discover installed skills, include the repository's
-`ghl-setup/SKILL.md` in the agent's instructions or use the manual installation
-path below.
+Each skill's frontmatter tells compatible agents when to activate it. If an
+agent does not auto-discover installed skills, include that skill's `SKILL.md`
+in the agent's instructions or use the manual installation path below.
 
 ### Claude desktop or Cowork
 
-When the product supports custom skill uploads, download the `ghl-setup`
-folder and upload it as a skill. If uploads are unavailable, give the agent the
-raw [`ghl-setup/SKILL.md`](./ghl-setup/SKILL.md) link and include the linked
-reference files when the workflow needs them.
+When the product supports custom skill uploads, download the skill folder you
+need and upload it as a skill. If uploads are unavailable, give the agent the
+raw `SKILL.md` link and include that skill's linked reference files when the
+workflow needs them.
 
 ## Manual installation
 
@@ -133,7 +146,8 @@ Use this fallback when the `skills` CLI is unavailable:
 git clone https://github.com/getsequence/skills.git /tmp/sequence-skills
 ```
 
-Copy the `ghl-setup` folder into the agent's skills directory:
+Copy one skill folder, or the complete collection, into the agent's skills
+directory:
 
 | Agent | Project directory | Global directory |
 | --- | --- | --- |
@@ -147,22 +161,36 @@ Copy the `ghl-setup` folder into the agent's skills directory:
 | Windsurf | `.windsurf/skills/` | `~/.codeium/windsurf/skills/` |
 | Kiro CLI | `.kiro/skills/` | `~/.kiro/skills/` |
 
-Example for Claude Code:
+Example for Claude Code with the current skill:
 
 ```bash
 cp -R /tmp/sequence-skills/ghl-setup ~/.claude/skills/ghl-setup
 ```
 
+To install the complete current collection manually:
+
+```bash
+cp -R /tmp/sequence-skills/* ~/.claude/skills/
+```
+
 The `skills` CLI maintains the current list of supported agents and their
 paths. Use it when your agent is not listed above.
 
-## Available skills
+## Skill catalog
 
-| Skill | Purpose | Integrations |
-| --- | --- | --- |
-| [`ghl-setup`](./ghl-setup) | Set up a self-funding GoHighLevel wallet with a Sequence buffer card, revenue routing, profit sweep, and weekly backstop | Sequence MCP, GoHighLevel |
+The catalog will grow as Sequence adds product and integration workflows.
 
-## What `ghl-setup` does
+| Skill | Category | Purpose | Integrations |
+| --- | --- | --- | --- |
+| [`ghl-setup`](./ghl-setup) | Workflow | Set up a self-funding GoHighLevel wallet with a Sequence buffer card, revenue routing, profit sweep, and weekly backstop | Sequence MCP, GoHighLevel |
+
+Use the installer to inspect the live collection before choosing a skill:
+
+```bash
+npx skills add getsequence/skills --list
+```
+
+## Featured workflow: `ghl-setup`
 
 The skill guides you through this loop:
 
@@ -213,13 +241,19 @@ for another integration.
 
 ## Updating or removing the skill
 
-Update an installed skill with:
+Update all installed Sequence skills with:
+
+```bash
+npx skills update
+```
+
+Update one skill by name with:
 
 ```bash
 npx skills update ghl-setup
 ```
 
-Remove it from the global scope with:
+Remove one skill from the global scope with:
 
 ```bash
 npx skills remove ghl-setup --global
@@ -228,17 +262,19 @@ npx skills remove ghl-setup --global
 ## Repository layout
 
 ```text
-ghl-setup/
-├── SKILL.md              # Agent workflow and safety rules
-├── README.md             # Human-facing skill overview
-└── reference/
-    ├── deep-links.md     # Dashboard-only Sequence steps
-    └── rules.md          # Rule definitions and simulation details
+skills-repository/
+├── <skill-name>/
+│   ├── SKILL.md          # Agent workflow and safety rules
+│   ├── README.md         # Optional human-facing overview
+│   ├── reference/        # Optional detailed guidance
+│   ├── examples/         # Optional representative tasks
+│   └── tests/            # Optional workflow fixtures
+└── README.md
 ```
 
-The repository will add a catalog, plugin manifests, and additional
-integration skills in later releases. The current layout remains intentionally
-small and easy to copy.
+The current repository keeps `ghl-setup` at the root for compatibility with
+the first release. Future skills will follow the same self-contained layout;
+the catalog and plugin manifests will arrive as the collection expands.
 
 ## Contributing
 
