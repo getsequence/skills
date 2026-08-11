@@ -1,6 +1,14 @@
 ---
 name: ghl-setup
-description: Set up the "GHL Wallet Autopilot" money loop for a GoHighLevel agency using Sequence. Runs in the terminal against the user's own Sequence account over the Sequence MCP (OAuth), creates the Money In / Money Out / Profit structure and the two automation rules, simulates the split, then hands off the dashboard-only steps (verify identity, issue the card, activate rules) as deep links. Final output: the card the user pastes into their HighLevel wallet. Use when the user says "/ghl-setup", "set up my GHL wallet", "connect Sequence to GoHighLevel", or "make my GHL wallet fund itself".
+description: >
+  Set up the "GHL Wallet Autopilot" money loop for a GoHighLevel agency using
+  Sequence. Runs in the terminal against the user's own Sequence account over
+  the Sequence MCP (OAuth), creates the Money In / Money Out / Profit structure
+  and the two automation rules, simulates the split, then hands off the
+  dashboard-only steps (verify identity, issue the card, activate rules) as
+  deep links. Final output: the card the user pastes into their HighLevel
+  wallet. Use when the user says "/ghl-setup", "set up my GHL wallet",
+  "connect Sequence to GoHighLevel", or "make my GHL wallet fund itself".
 ---
 
 # GHL Wallet Autopilot — setup skill
