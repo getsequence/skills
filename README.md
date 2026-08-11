@@ -1,58 +1,250 @@
 # Sequence Skills
 
-Claude Code skills for automating real money movement with [Sequence](https://getsequence.io).
+Portable skills for using [Sequence](https://getsequence.io) with coding
+agents, integrations, and real-world money workflows.
 
-Each skill is a self-contained folder with a `SKILL.md` that teaches Claude Code how to wire up a specific money loop for you, end to end, from the terminal. Skills talk to Sequence over the **Sequence MCP using OAuth**, so there is no API key to paste and no backend to run. Anything that can only happen in the Sequence dashboard (verifying your identity, connecting a bank, issuing a card, activating a rule) is handed back to you as a direct link.
+The first skill sets up a self-funding [GoHighLevel](https://www.gohighlevel.com/)
+wallet through Sequence. More product and integration skills will live here as
+they become ready.
 
-Nothing here ever moves real money on its own. Skills create accounts, build automation rules in a paused state, and run simulations. Real money only moves once you activate the rules yourself in the app.
+## Install in one command
 
-## Available skills
-
-| Skill | What it does |
-|-------|--------------|
-| [`ghl-setup`](./ghl-setup) | Sets up "GHL Wallet Autopilot" for a GoHighLevel agency: revenue lands in a Money In account, a rule keeps the card your GHL wallet pulls from topped up, and everything left sweeps to your checking as profit. |
-
-## Install
-
-You need [Claude Code](https://claude.com/claude-code) and a Sequence account.
-
-### Option A: copy a skill into Claude Code
+The easiest path works across Claude Code, Codex, Cursor, GitHub Copilot,
+Cline, OpenCode, Gemini CLI, Windsurf, and the other agents supported by the
+open Agent Skills ecosystem:
 
 ```bash
-git clone https://github.com/getsequence/skills.git
-cp -R skills/ghl-setup ~/.claude/skills/
+npx skills add getsequence/skills --skill ghl-setup
 ```
 
-Then open Claude Code and run the skill by name, for example:
+Install globally for the agent you use every day:
 
+```bash
+npx skills add getsequence/skills \
+  --skill ghl-setup \
+  --global \
+  --agent claude-code \
+  --yes
 ```
+
+The [`skills` CLI](https://github.com/vercel-labs/skills) can install the same
+skill into multiple agents, choose project or global scope, update it later,
+and list the agents available on your machine.
+
+## Choose your coding agent
+
+Run the same command with the agent name that matches your tool:
+
+```bash
+# Claude Code
+npx skills add getsequence/skills --skill ghl-setup -g -a claude-code -y
+
+# Codex
+npx skills add getsequence/skills --skill ghl-setup -g -a codex -y
+
+# Cursor
+npx skills add getsequence/skills --skill ghl-setup -g -a cursor -y
+
+# GitHub Copilot
+npx skills add getsequence/skills --skill ghl-setup -g -a github-copilot -y
+
+# Cline
+npx skills add getsequence/skills --skill ghl-setup -g -a cline -y
+
+# OpenCode
+npx skills add getsequence/skills --skill ghl-setup -g -a opencode -y
+
+# Gemini CLI
+npx skills add getsequence/skills --skill ghl-setup -g -a gemini-cli -y
+
+# Windsurf
+npx skills add getsequence/skills --skill ghl-setup -g -a windsurf -y
+
+# Kiro CLI
+npx skills add getsequence/skills --skill ghl-setup -g -a kiro-cli -y
+```
+
+To see every agent supported by the installer:
+
+```bash
+npx skills add getsequence/skills --list
+```
+
+To install into more than one agent in one command:
+
+```bash
+npx skills add getsequence/skills \
+  --skill ghl-setup \
+  --global \
+  --agent claude-code \
+  --agent codex \
+  --agent cursor \
+  --yes
+```
+
+Use `--copy` instead of symlinks when your environment does not support them.
+
+## Start the skill
+
+### Claude Code
+
+After installation, open Claude Code and run:
+
+```text
 /ghl-setup
 ```
 
-To install a skill for a single project instead of globally, copy it into that project's `.claude/skills/` directory.
-
-### Option B: point Claude Code at your own copy
-
-Fork or clone this repo wherever you keep your tooling, then symlink the skills you want into `~/.claude/skills/`:
+If the Sequence MCP is not connected, the skill explains how to add it and
+complete OAuth:
 
 ```bash
-ln -s "$(pwd)/skills/ghl-setup" ~/.claude/skills/ghl-setup
+claude mcp add --transport http sequence https://app.getsequence.io/api/mcp
 ```
 
-## How a skill is structured
+Restart Claude Code after adding a new MCP connection, then run `/mcp` and
+complete the sign-in flow.
 
+### Codex, Cursor, Copilot, and other agents
+
+Ask the agent to set up your GHL wallet with Sequence, or refer to the skill by
+name:
+
+```text
+Use the ghl-setup skill to set up my GoHighLevel wallet through Sequence.
 ```
+
+The skill's frontmatter tells compatible agents when to activate it. If an
+agent does not auto-discover installed skills, include the repository's
+`ghl-setup/SKILL.md` in the agent's instructions or use the manual installation
+path below.
+
+### Claude desktop or Cowork
+
+When the product supports custom skill uploads, download the `ghl-setup`
+folder and upload it as a skill. If uploads are unavailable, give the agent the
+raw [`ghl-setup/SKILL.md`](./ghl-setup/SKILL.md) link and include the linked
+reference files when the workflow needs them.
+
+## Manual installation
+
+Use this fallback when the `skills` CLI is unavailable:
+
+```bash
+git clone https://github.com/getsequence/skills.git /tmp/sequence-skills
+```
+
+Copy the `ghl-setup` folder into the agent's skills directory:
+
+| Agent | Project directory | Global directory |
+| --- | --- | --- |
+| Claude Code | `.claude/skills/` | `~/.claude/skills/` |
+| Codex | `.agents/skills/` | `~/.codex/skills/` |
+| Cursor | `.agents/skills/` | `~/.cursor/skills/` |
+| GitHub Copilot | `.agents/skills/` | `~/.copilot/skills/` |
+| Cline | `.agents/skills/` | `~/.agents/skills/` |
+| OpenCode | `.agents/skills/` | `~/.config/opencode/skills/` |
+| Gemini CLI | `.agents/skills/` | `~/.gemini/skills/` |
+| Windsurf | `.windsurf/skills/` | `~/.codeium/windsurf/skills/` |
+| Kiro CLI | `.kiro/skills/` | `~/.kiro/skills/` |
+
+Example for Claude Code:
+
+```bash
+cp -R /tmp/sequence-skills/ghl-setup ~/.claude/skills/ghl-setup
+```
+
+The `skills` CLI maintains the current list of supported agents and their
+paths. Use it when your agent is not listed above.
+
+## Available skills
+
+| Skill | Purpose | Integrations |
+| --- | --- | --- |
+| [`ghl-setup`](./ghl-setup) | Set up a self-funding GoHighLevel wallet with a Sequence buffer card, revenue routing, profit sweep, and weekly backstop | Sequence MCP, GoHighLevel |
+
+## What `ghl-setup` does
+
+The skill guides you through this loop:
+
+```text
+Client payment
+      ↓
+Money In in Sequence
+      ├── refill the buffer card
+      │       ↓
+      │   GHL wallet auto-recharge
+      └── sweep the remainder to checking as profit
+```
+
+It can:
+
+- Find or confirm the Sequence beneficiary and checking account
+- Create the Money In and Money Out accounts
+- Create the automation rules in a paused state
+- Run a simulation before anything goes live
+- Provide direct links for dashboard-only steps
+- Explain how to add the Sequence card to the GHL wallet
+
+## Safety model
+
+The skill never moves real money on its own. It creates accounts, creates
+paused rules, and runs simulations. You activate the rules yourself in the
+Sequence app.
+
+The workflow keeps these steps human-controlled:
+
+- Identity or business verification
+- Bank connection and account selection
+- Float-size confirmation
+- Card issuance and card entry in GoHighLevel
+- Rule activation
+
+Read the full [security policy](./SECURITY.md) before adapting this workflow
+for another integration.
+
+## Requirements
+
+- A Sequence account
+- Access to the Sequence MCP over OAuth
+- A verified business or individual beneficiary
+- A connected checking account, unless you are testing with a Sequence pod
+- Writer or Admin permission for beneficiary, bank, and card actions
+- A GoHighLevel agency account with wallet auto-recharge
+
+## Updating or removing the skill
+
+Update an installed skill with:
+
+```bash
+npx skills update ghl-setup
+```
+
+Remove it from the global scope with:
+
+```bash
+npx skills remove ghl-setup --global
+```
+
+## Repository layout
+
+```text
 ghl-setup/
-  SKILL.md          # the instructions Claude Code follows, with YAML frontmatter
-  README.md         # a short human-readable overview of the skill
-  reference/        # supporting docs Claude loads only when it needs them
+├── SKILL.md              # Agent workflow and safety rules
+├── README.md             # Human-facing skill overview
+└── reference/
+    ├── deep-links.md     # Dashboard-only Sequence steps
+    └── rules.md          # Rule definitions and simulation details
 ```
 
-The `SKILL.md` frontmatter (`name` and `description`) is what Claude Code uses to decide when the skill applies. The body is the full workflow.
+The repository will add a catalog, plugin manifests, and additional
+integration skills in later releases. The current layout remains intentionally
+small and easy to copy.
 
 ## Contributing
 
-Add a new skill as a top-level folder with its own `SKILL.md`, add a row to the table above, and open a pull request.
+Read [`CONTRIBUTING.md`](./CONTRIBUTING.md) before opening a pull request. For
+security issues, follow [`SECURITY.md`](./SECURITY.md) instead of opening a
+public issue.
 
 ## License
 
