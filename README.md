@@ -190,54 +190,33 @@ Use the installer to inspect the live collection before choosing a skill:
 npx skills add getsequence/skills --list
 ```
 
-## Featured workflow: `ghl-setup`
-
-The skill guides you through this loop:
-
-```text
-Client payment
-      ↓
-Money In in Sequence
-      ├── refill the buffer card
-      │       ↓
-      │   GHL wallet auto-recharge
-      └── sweep the remainder to checking as profit
-```
-
-It can:
-
-- Find or confirm the Sequence beneficiary and checking account
-- Create the Money In and Money Out accounts
-- Create the automation rules in a paused state
-- Run a simulation before anything goes live
-- Provide direct links for dashboard-only steps
-- Explain how to add the Sequence card to the GHL wallet
-
 ## Safety model
 
-The skill never moves real money on its own. It creates accounts, creates
-paused rules, and runs simulations. You activate the rules yourself in the
-Sequence app.
+Sequence Skills describe workflows. Each skill documents its own permissions,
+side effects, and approval gates. Skills that work with financial workflows
+must keep real-money actions under explicit human control.
 
-The workflow keeps these steps human-controlled:
+Depending on the skill, human-controlled steps may include:
 
 - Identity or business verification
-- Bank connection and account selection
-- Float-size confirmation
-- Card issuance and card entry in GoHighLevel
-- Rule activation
+- Account, beneficiary, or integration selection
+- Configuration values with financial impact
+- Card issuance or payment-method changes
+- Rule activation or other live actions
 
-Read the full [security policy](./SECURITY.md) before adapting this workflow
-for another integration.
+Read the full [security policy](./SECURITY.md) before adapting a skill for a
+new integration.
 
 ## Requirements
 
-- A Sequence account
-- Access to the Sequence MCP over OAuth
-- A verified business or individual beneficiary
-- A connected checking account, unless you are testing with a Sequence pod
-- Writer or Admin permission for beneficiary, bank, and card actions
-- A GoHighLevel agency account with wallet auto-recharge
+Requirements vary by skill. Check the skill's README and `SKILL.md` for:
+
+- Required Sequence account access
+- MCP, CLI, browser, or other connector requirements
+- External product accounts
+- Required permissions
+- Human approval steps
+- Simulation or dry-run support
 
 ## Updating or removing the skill
 
