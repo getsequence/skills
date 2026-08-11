@@ -1,0 +1,33 @@
+{
+  "schema_version": "1",
+  "repository": "getsequence/skills",
+  "skills": [
+    {
+      "name": "ghl-setup",
+      "path": "ghl-setup",
+      "description": "Set up a self-funding GoHighLevel wallet through Sequence.",
+      "category": "workflow",
+      "integrations": ["sequence-mcp", "gohighlevel"],
+      "agents": [
+        "claude-code",
+        "codex",
+        "cursor",
+        "github-copilot",
+        "cline",
+        "opencode",
+        "gemini-cli",
+        "windsurf",
+        "kiro-cli"
+      ],
+      "side_effects": [
+        "creates-accounts",
+        "creates-paused-rules",
+        "runs-simulations",
+        "provides-dashboard-deep-links"
+      ],
+      "requires_human_approval": true,
+      "real_money_allowed": false,
+      "status": "available"
+    }
+  ]
+}
