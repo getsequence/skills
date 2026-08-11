@@ -3,6 +3,28 @@
   "repository": "getsequence/skills",
   "skills": [
     {
+      "name": "sequence",
+      "path": "sequence",
+      "description": "Route Sequence requests to the most specific available skill.",
+      "category": "router",
+      "integrations": ["sequence-mcp"],
+      "agents": [
+        "claude-code",
+        "codex",
+        "cursor",
+        "github-copilot",
+        "cline",
+        "opencode",
+        "gemini-cli",
+        "windsurf",
+        "kiro-cli"
+      ],
+      "side_effects": [],
+      "requires_human_approval": true,
+      "real_money_allowed": false,
+      "status": "available"
+    },
+    {
       "name": "ghl-setup",
       "path": "ghl-setup",
       "description": "Set up a self-funding GoHighLevel wallet through Sequence.",

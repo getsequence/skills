@@ -180,6 +180,7 @@ Integration metadata lives in [`catalog/integrations.json`](./catalog/integratio
 
 | Skill | Category | Purpose | Integrations |
 | --- | --- | --- | --- |
+| [`sequence`](./sequence) | Router | Route general Sequence requests to the right workflow | Sequence MCP |
 | [`ghl-setup`](./ghl-setup) | Workflow | Set up a self-funding GoHighLevel wallet with a Sequence buffer card, revenue routing, profit sweep, and weekly backstop | Sequence MCP, GoHighLevel |
 
 Use the installer to inspect the live collection before choosing a skill:
