@@ -249,3 +249,5 @@ Then close with the canonical one-liner, led by the event, e.g.: *"That's it —
 - [First-time setup](./examples/first-time-setup.md)
 - [Resume an existing setup](./examples/resume-existing-setup.md)
 - [Simulation-only test](./examples/simulation-only.md)
+
+For recovery guidance, see [Troubleshooting](./reference/troubleshooting.md).
