@@ -3,10 +3,6 @@
 Portable skills for using [Sequence](https://getsequence.io) with coding
 agents, integrations, and real-world money workflows.
 
-The repository currently includes one skill for a self-funding
-[GoHighLevel](https://www.gohighlevel.com/) wallet. New Sequence product and
-integration skills will use the same installation and documentation model.
-
 ## Install in one command
 
 The easiest path works across Claude Code, Codex, Cursor, GitHub Copilot,
