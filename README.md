@@ -176,6 +176,7 @@ paths. Use it when your agent is not listed above.
 
 The catalog will grow as Sequence adds product and integration workflows.
 The machine-readable registry lives in [`catalog/skills.json`](./catalog/skills.json).
+Integration metadata lives in [`catalog/integrations.json`](./catalog/integrations.json).
 
 | Skill | Category | Purpose | Integrations |
 | --- | --- | --- | --- |

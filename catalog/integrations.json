@@ -1,0 +1,40 @@
+{
+  "schema_version": "1",
+  "repository": "getsequence/skills",
+  "integrations": [
+    {
+      "name": "sequence-mcp",
+      "display_name": "Sequence MCP",
+      "category": "agent-connector",
+      "authentication": "oauth",
+      "used_by": ["ghl-setup"],
+      "capabilities": [
+        "list-beneficiaries",
+        "list-accounts",
+        "create-accounts",
+        "create-paused-rules",
+        "simulate-rules",
+        "read-rule-executions",
+        "read-transfers"
+      ],
+      "requires_human_approval": true,
+      "real_money_allowed": false
+    },
+    {
+      "name": "gohighlevel",
+      "display_name": "GoHighLevel",
+      "category": "external-product",
+      "authentication": "dashboard",
+      "used_by": ["ghl-setup"],
+      "automated_actions": [],
+      "manual_actions": [
+        "route-client-revenue-to-sequence",
+        "add-sequence-card-to-wallet",
+        "configure-wallet-auto-recharge"
+      ],
+      "permissions": ["agency-wallet-access"],
+      "risk_level": "high",
+      "requires_human_approval": true
+    }
+  ]
+}
