@@ -1,0 +1,4 @@
+interface:
+  display_name: "Sequence Skill Builder"
+  short_description: "Add and ship skills safely"
+  default_prompt: "Use $sequence-skill-builder to add a skill, update the README and catalogs, review upstream changes, validate the repository, and prepare a focused commit."
