@@ -9,6 +9,21 @@ description: >
   deep links. Final output: the card the user pastes into their HighLevel
   wallet. Use when the user says "/ghl-setup", "set up my GHL wallet",
   "connect Sequence to GoHighLevel", or "make my GHL wallet fund itself".
+license: MIT
+compatibility: >
+  Requires access to the Sequence MCP over OAuth. Some setup steps require
+  browser or dashboard access to Sequence and GoHighLevel. Tested with Claude
+  Code; compatible agents must support the Agent Skills SKILL.md format.
+metadata:
+  author: Sequence
+  version: "1.0.0"
+  product: sequence
+  category: financial-workflow
+  integrations: sequence-mcp, gohighlevel
+  risk: high
+  side_effects: creates-accounts, creates-paused-rules, runs-simulations
+  requires_human_approval: true
+  real_money_allowed: false
 ---
 
 # GHL Wallet Autopilot — setup skill
